@@ -7,7 +7,7 @@
     >
     <v-list dense>
       <template>
-        <v-list-item :to="{ name:'Home' }">
+        <v-list-item>
           <v-list-item-action>
             <v-icon>home</v-icon>
           </v-list-item-action>
@@ -71,7 +71,8 @@
         fluid
       >
         <v-slide-x-transition mode="out-in">
-          <router-view />
+          <router-view></router-view>
+          <Login></Login>
         </v-slide-x-transition>
       </v-container>
     </v-content>
@@ -79,13 +80,14 @@
 </template>
 
 <script>
-import ToolBar from "./components/Toolbar";
-import HelloWorld from './components/HelloWorld';
+
+import Login from "./views/Login.vue";
 
 export default {
   name: 'App',
+  
   components:{
-    HelloWorld
+    Login,
   },
 
   data: () => ({
