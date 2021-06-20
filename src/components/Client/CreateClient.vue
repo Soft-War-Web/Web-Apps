@@ -112,6 +112,7 @@
             email: '',
             createdAt: '',
             clients: [],
+            search: '',
             editedIndex: -1
         }),
         computed: {

@@ -35,13 +35,13 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item :to="{name:'products'}">
+          <v-list-item :to="{name:'recipes'}">
             <v-list-item-action>
               <v-icon>table_chart</v-icon>
             </v-list-item-action> 
             <v-list-item-content>
               <v-list-item-title>
-                Products
+                Recipes
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -58,7 +58,7 @@
     >
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-        <span class="hidden-sm-and-down">Demo Aplicaciones</span>
+        <span class="hidden-sm-and-down">Nutricare</span>
       </v-toolbar-title>
       <v-spacer />
       <v-btn icon>
