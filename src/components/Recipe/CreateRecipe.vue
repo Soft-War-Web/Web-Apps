@@ -1,11 +1,6 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="recipes"
-    :search="search"
-    sort-by="name"
-    class="elevation-1" style="width:800px"><!--Se agregó el style-->
-    <template v-slot:top>
+<div style=";width: 100% ">
+    <template >
       <v-toolbar flat color="white">
         <v-toolbar-title>CRUD Recipe</v-toolbar-title>
         <v-divider 
@@ -14,9 +9,6 @@
           vertical
         ></v-divider>
         <v-spacer></v-spacer>
-        <v-text-field class="text-xs-center" v-model="search" 
-        append-icon="search" label="Search Recipe"  
-        single-line hide-details></v-text-field>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on }">
@@ -63,51 +55,40 @@
           </v-card>
         </v-dialog>
       </v-toolbar>
-    </template>
-    <template v-slot:item="{ item }">
-      <tr>
-        <td>{{ item.name }}</td>
-        <td>{{ item.description }}</td>
-        <td>{{ item.preparation }}</td>
-        <td>{{ item.ingredients }}</td>
-        <td>{{ item.nutritionistId }}</td>
-        
-        <td class="justify-center layout px-0">
-          <v-icon 
-            small 
-            class="mr-2" 
-            @click="editItem(item)"
-          >
-            edit
-          </v-icon>
-          <v-icon 
-            small 
-            class="mr-2" 
-            @click="deleteItem(item)"
-          >
-            delete
-          </v-icon>
-        </td>
-      </tr>
-    </template>
-    <template v-slot:no-data>
-      <v-btn color="primary" @click="list">Reset</v-btn>
-    </template>
-  </v-data-table>
+    </template >
+    <div class="d-flex flex-wrap  justify-space-between">
+    <v-card class="mx-auto mb-10" max-width="400" v-for="(recipe,i) in recipes" :key="i" >
+    <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+      <v-card-title>{{recipe.name}}</v-card-title>
+    </v-img>
+
+    <v-card-subtitle class="pb-0">Description</v-card-subtitle>
+    <v-card-text class="text--primary">
+      <div>{{recipe.description}}</div>
+    </v-card-text>
+    <v-card-subtitle class="pb-0">Preparation</v-card-subtitle>
+    <v-card-text class="text--primary">
+      <div>{{recipe.preparation}}</div>
+    </v-card-text>
+    <v-card-subtitle class="pb-0">Ingredients</v-card-subtitle>
+    <v-card-text class="text--primary">
+      <div>{{recipe.ingredients}}</div>
+    </v-card-text>
+
+    <v-card-actions>
+      <v-btn color="orange" text @click="editItem(recipe)"> Edit </v-btn>
+      <v-btn color="orange" text @click="deleteItem(recipe)"> Delete </v-btn>
+    </v-card-actions>
+  </v-card>
+  </div>
+</div>
 </template>
 
 <script>
     import axios from 'axios'
-    export default {
-        data: () => ({
-          dialog: false,
-          headers: [
-                { text: 'Name', value: 'name', sortable: true},
-                { text: 'Description', value: 'description', sortable: false},
-                { text: 'Preparation', value: 'preparation', sortable: true},
-                { text: 'Ingredients', value: 'ingredients', sortable: true},
-                { text: 'NutritionistId', value: 'nutritionistId', sortable: true},
-          ],
+  export default {
+    data: () => ({
+        dialog: false,
             id: '',
             name: '',
             description: '',
@@ -119,13 +100,15 @@
             nutritionists: [],
             nutritionistId: 0,
             search: "",
-            editedIndex: -1
-        }),
-        computed: {
-          formTitle(){
+            editedIndex: -1,
+            loading: false,
+    }),
+
+    computed: {
+        formTitle(){
             return this.editedIndex === -1 ? 'New Recipe' : 'Edit Recipe'
-          },
         },
+    },
         watch: {
           dialog (val){
             val || this.close()
@@ -134,12 +117,17 @@
         created () {
             this.list();
         },
-        methods: {
-            list(){
+    methods: {
+      reserve () {
+        this.loading = true
+        setTimeout(() => (this.loading = false), 2000)
+      },
+      list(){
                 let me = this;
                 axios.get('api/Recipes')
                 .then(function(response){
                   me.recipes = response.data;
+                  console.log(response.data);
                 }).catch(function(error){
                   console.log(error);
                 });
@@ -189,9 +177,10 @@
                 this.ingredients = "";
                 this.createdAt = "";
                 this.lastModification = "";
-                this.editedIndex=-1;
+                this.editedIndex = -1;
                 this.nutritionistId="";
             },
+            
             save() {
               let me = this;
               this.getNutritionistById(this.nutritionistId);
@@ -204,7 +193,7 @@
                           'ingredients': me.ingredients,
                           'createdAt': me.createdAt,
                           'lastModification': me.lastModification,
-                          'nutritionistId': me.nutritionistId,
+                          'nutritionistId': me.nutritionistId,  
                 }).then(function(response){
                   me.close();
                   me.list();
@@ -232,6 +221,6 @@
             }
             this.close()
           },
-        },
-    }
+    },
+  }
 </script>
