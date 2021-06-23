@@ -45,6 +45,16 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item :to="{name:'recommendations'}">
+            <v-list-item-action>
+              <v-icon>table_chart</v-icon>
+            </v-list-item-action> 
+            <v-list-item-content>
+              <v-list-item-title>
+                Recommendations
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list-group>
       </template>
     </v-list>
