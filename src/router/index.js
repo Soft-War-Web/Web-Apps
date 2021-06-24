@@ -34,7 +34,12 @@ const routes = [
     path: '/recommendations',
     name: 'recommendations',
     component: () => import('../components/Recommendation/CreateRecommendation.vue')
-  }
+  },
+  {
+    path: '/clientProfile',
+    name: 'clientProfile',
+    component: () => import('../components/Client/ProfileClient.vue')
+  },
 ]
 
 const router = new VueRouter({
