@@ -55,6 +55,36 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item :to="{name:'professionalProfile'}">
+            <v-list-item-action>
+              <v-icon>table_chart</v-icon>
+            </v-list-item-action> 
+            <v-list-item-content>
+              <v-list-item-title>
+                ProfessionalProfile
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item :to="{name:'nutritionistProfile'}">
+            <v-list-item-action>
+              <v-icon>table_chart</v-icon>
+            </v-list-item-action> 
+            <v-list-item-content>
+              <v-list-item-title>
+                NutritionistProfile
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item :to="{name:'nutritionists'}">
+           <v-list-item-action>
+            <v-icon>table_chart</v-icon>
+           </v-list-item-action> 
+           <v-list-item-content>
+             <v-list-item-title>
+              Nutritionists
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
           <v-list-item :to="{name:'clientProfile'}">
             <v-list-item-action>
               <v-icon>table_chart</v-icon>

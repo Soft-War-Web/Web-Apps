@@ -40,6 +40,21 @@ const routes = [
     name: 'clientProfile',
     component: () => import('../components/Client/ProfileClient.vue')
   },
+  {
+    path: '/nutritionists',
+    name: 'nutritionists',
+    component: () => import('../components/Nutritionist/CreateNutritionist.vue')
+  },
+  {
+    path: '/nutritionistProfile',
+    name: 'nutritionistProfile',
+    component: () => import('../components/Nutritionist/ProfileNutritionist.vue')
+  },
+  {
+    path: '/professionalProfile',
+    name: 'professionalProfile',
+    component: () => import('../components/ProfessionalProfile/CreateProfessionalProfile.vue')
+  },
 ]
 
 const router = new VueRouter({
