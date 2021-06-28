@@ -55,6 +55,10 @@ const routes = [
     name: 'professionalProfile',
     component: () => import('../components/ProfessionalProfile/CreateProfessionalProfile.vue')
   },
+    path: '/appointments',
+    name: 'appointments',
+    component: () => import('../components/Appointment/CreateAppointment.vue')
+  },
 ]
 
 const router = new VueRouter({

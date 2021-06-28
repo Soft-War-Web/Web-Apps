@@ -21,7 +21,7 @@
           <v-list-item slot="activator">
             <v-list-item-content>
               <v-list-item-title>
-                Almacen
+                Testeos
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -92,6 +92,16 @@
             <v-list-item-content>
               <v-list-item-title>
                 Client Profile
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+                    <v-list-item :to="{name:'appointments'}">
+            <v-list-item-action>
+              <v-icon>table_chart</v-icon>
+            </v-list-item-action> 
+            <v-list-item-content>
+              <v-list-item-title>
+                Appointments
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
