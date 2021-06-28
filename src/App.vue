@@ -95,16 +95,34 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-                    <v-list-item :to="{name:'appointments'}">
+
+          <v-list-item :to="{name:'appointments'}">
             <v-list-item-action>
               <v-icon>table_chart</v-icon>
             </v-list-item-action> 
             <v-list-item-content>
               <v-list-item-title>
-                Appointments
+                Appointment
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
+
+          <v-list-item :to="{name:'Specialty'}">
+            <v-list-item-action>
+              <v-icon>table_chart</v-icon>
+            </v-list-item-action> 
+            <v-list-item-content>
+              <v-list-item-title>
+                Specialty
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+            
+
+
+
+
         </v-list-group>
       </template>
     </v-list>
