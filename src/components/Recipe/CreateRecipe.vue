@@ -214,7 +214,9 @@
                           'preparation': me.preparation,
                           'ingredients': me.ingredients,
                           'favorites': me.favorites,
-                          'nutritionistId': me.nutritionistId,  
+                          'nutritionistId': me.nutritionistId,
+                          'createdAt': me.createdAt,
+                          'lastModification': me.lastModification
                 }).then(function(response){
                   me.close();
                   me.list();
@@ -230,6 +232,8 @@
                           'preparation': me.preparation,
                           'ingredients': me.ingredients,
                           'favorites': me.favorites,
+                          'createdAt': me.createdAt,
+                          'lastModification': me.lastModification
                 }).then(function(response){
                   me.close();
                   me.list();
