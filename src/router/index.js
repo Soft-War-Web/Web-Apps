@@ -69,6 +69,18 @@ const routes = [
     component: () => import('../components/Specialty/CreateSpecialty.vue')
   },
 
+  {
+    path: '/PaymentMethod',
+    name: 'PaymentMethod',
+    component: () => import('../components/PaymentMethod/CreatePaymentMethod.vue')
+  },
+
+  {
+    path: '/ListPaymentMethods',
+    name: 'ListPaymentMethods',
+    component: () => import('../components/PaymentMethod/ListPaymentMethods.vue')
+  },
+
 
 ]
 const router = new VueRouter({
