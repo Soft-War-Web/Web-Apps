@@ -28,7 +28,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="save()">Publicar</v-btn>
-              <v-btn color="blue darken-1" text @click="close()">Cancelar</v-btn>
+              <v-btn color="blue darken-1" text @click="close">Cancelar</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -39,15 +39,14 @@
             <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
                 <v-card-title>{{recommendation.name}}</v-card-title>
             </v-img>
+            <v-card-subtitle class="pb-0">Descripción</v-card-subtitle>
             <v-card-text class="text--primary">
             <div>{{recommendation.description}}</div>
             </v-card-text>
-
+            
             <v-card-actions>
-            <v-btn color="orange" text @click="editItem(recommendation)"> Modificar</v-btn>
             <v-btn color="orange" text @click="removeRecommendation(recommendation)"> Eliminar</v-btn>
             </v-card-actions>
-
         </v-card>
     </div>
 </div>
@@ -63,7 +62,6 @@
         description: '',
         lastModification: new Date(),
         createdAt: new Date(),
-        favorites: 0,
         recommendations: [],
         nutritionists: [],
         nutritionistId: 0,
@@ -74,7 +72,7 @@
 
     computed: {
         formTitle(){
-            return this.editedIndex === -1 ? 'Nueva recomendación' : 'Modificar recomendación'
+            return this.editedIndex === -1 ? 'New Recipe' : 'Edit Recipe'
         },
     },
         watch: {
@@ -107,17 +105,17 @@
                 }).catch(function(error){
                   console.log(error);
                 });
-      },
+      },/*
       editItem(item){
-            this.id = item.recommendationId;
-            this.name = item.name;
-            this.description = item.description;
-            this.createdAt = item.createdAt;
-            this.lastModification = item.lastModification;
-            this.nutritionistId = item.nutritionistId;
-            this.editedIndex = 1;
-            this.dialog = true;
-      },
+        this.id = item.recipeId;
+        this.name = item.name;
+        this.description = item.description;
+        this.createdAt = item.createdAt;
+        this.lastModification = item.lastModification;
+        this.nutritionistId = item.nutritionistId;
+        this.editedIndex = 1;
+        this.dialog = true;
+      },*/
             getNutritionistById(){
                 axios.get('api/Nutritionists/GetNutritionistById/'+this.nutritionistId)
                 .then(function(response){
@@ -128,7 +126,7 @@
             },
 
             close() {
-                this.dialog = false;
+                this.dialog = false
             },
             clean(){
                 this.id = "";
@@ -141,45 +139,13 @@
             },
             save(){
                 let me = this;
-                if(this.editedIndex > -1){
-                    axios.put('api/Recommendations/PutRecommendation',{
-                        'recommendationId': me.id,
-                        'name': me.name,
-                        'description': me.description, 
+                axios.post('api/Recommendations',{ // Publicar recomendación
                         'nutritionistId': 1,
-                        'createdAt': me.createdAt,
-                        'lastModification': me.lastModification,
-                    }).then(function(response){
-                    me.close();
-                    me.list();
-                    me.clean();
-                    }).catch(function(error){
-                        console.log(error);
-                    });
-                }else{
-                    axios.post('api/Recommendations',{ // Publicar recomendación
-                        'nutritionistId': me.nutritionistId,
                         'name': me.name,
                         'description': me.description,
-                        //'createdAt': me.createdAt,
-                        'lastModification': me.lastModification
-                    }).then(function(response){
-                        me.list();
-                        me.clean();
-                        me.close();
-                    }).catch(function(error){
-                        console.log(error);
-                    });
-                }
-                this.close();
-            },
-            removeRecommendation(item) {
-              let me = this;
-              if(confirm('¿Estás seguro de que quieres eliminar esta recomendación?'))
-                axios.delete('api/Recommendations/'+item.recommendationId,{
-                      'id': item.recommendationId
+                        'createdAt': me.createdAt,
+                        'lastModification': me.lastModification,
                 }).then(function(response){
-                  console.log(item.id);
                   me.list();
                   me.clean();
                   me.close();
@@ -187,23 +153,20 @@
                   console.log(error);
                 });
             },
-            /*
-            editRecommendation(item){
-                let me = this;
-                axios.put('api/Recommendations/PutRecommendation',{
-                    'nutritionistId': 1,
-                    'name': me.name,
-                    'description': me.description,
-                    'createdAt': me.createdAt,
-                    'lastModification': me.lastModification,
+            removeRecommendation (item) {
+              let me = this;
+              if(confirm('¿Estás seguro de que quieres eliminar esta recommendación?'))
+                axios.delete('api/Recommendations/'+item.recommendationId,{
+                      'recommendationId': item.recommendationId
                 }).then(function(response){
+                  console.log(item.id);
                   me.close();
                   me.list();
                   me.clean();
                 }).catch(function(error){
-                    console.log(error);
+                  console.log(error);
                 });
-            },*/
+            },
     },
   }
 </script>

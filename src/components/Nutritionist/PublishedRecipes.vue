@@ -63,7 +63,7 @@
             </v-card-text>
             <v-card-actions>
             <v-btn color="orange" text @click="editRecipe(recipe)"> Modificar</v-btn>
-            <v-btn color="orange" text @click="removeRecipe(recipe)"> Eliminar</v-btn>
+            <v-btn color="orange" text @click="removeRecipe(recipe)"> Eliminar receta </v-btn>
             </v-card-actions>
         </v-card>
     </div>
