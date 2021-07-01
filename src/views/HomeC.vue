@@ -11,7 +11,7 @@
       <v-col>
         <v-col>
           <v-btn to="/clientProfile">
-            perfil
+            {{url_data}}perfil
           </v-btn>
           <br>
           <br>
@@ -53,8 +53,14 @@
 
   export default {
     name: 'HomeC',
+    mounted(){
+     this.url_data=this.$route.params.id;
+    },
 
     components: {
     },
+    data: () => ({
+      url_data: null
+    }),
   }
 </script>

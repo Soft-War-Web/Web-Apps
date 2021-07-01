@@ -114,7 +114,7 @@ export default {
          axios.get('api/Clients/GetClientByEmail/'+this.email)
          .then(function(response){
            if(me.password == response.data.password){
-             me.$router.push({name: 'HomeC'});
+             me.$router.push({name: 'HomeC', params: {id: me.email}});
            }
            else{
              alert('La contraseña es incorrecta');
