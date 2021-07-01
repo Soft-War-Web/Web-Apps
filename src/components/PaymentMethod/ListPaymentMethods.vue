@@ -85,8 +85,9 @@ export default{
   methods: {
     list(){
         let me = this;
-        axios.get('api/PaymentMethods')
-            .then(function(response){
+        axios.get('api/PaymentMethods/GetPaymentMethodByClient/'+1, {
+                      'clientId': 1
+                }).then(function(response){
                 me.paymentMethods = response.data;
                 console.log(response.data);
             }).catch(function(error){
@@ -117,7 +118,9 @@ export default{
                       'id': item.paymentMethodId
                 }).then(function(response){
                   console.log(item.id);
+                  me.close();
                   me.list();
+                  me.clean();
                 }).catch(function(error){
                   console.log(error);
                 });
