@@ -10,37 +10,37 @@
       </v-col>
       <v-col>
         <v-col>
-          <v-btn>
+          <v-btn to="/clientProfile">
             perfil
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn to="/availableNutritionists">
             asesorías
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn to="/clientProfile">
             historial de asesorías
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn to="/clientProfile">
             recetas
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn to="/clientProfile">
             recomendaciones
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn to="/clientProfile">
             métodos de pago
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn to="/clientProfile">
             pagos realizados
           </v-btn>
         </v-col>

@@ -85,10 +85,10 @@
 </template>
 
 <script>
-    import axios from 'axios'
+import axios from 'axios'
   export default {
     data: () => ({
-        dialog: false,
+      dialog: false,
             id: '',
             clientId: '',
             nutritionistId: '',
@@ -154,7 +154,7 @@
             },
             deleteItem (item) {
               let me = this;
-              if(confirm('¿Estás seguro que quieres eliminar este Category?'))
+              if(confirm('¿Estás seguro que quieres eliminar este cita?'))
                 axios.delete('api/Appointments/'+item.appointmentId,{
                       'id': item.appointmentId
                 }).then(function(response){

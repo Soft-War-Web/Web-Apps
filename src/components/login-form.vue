@@ -1,38 +1,144 @@
 <template>
-  <v-card height="82vh" class="d-flex flex-row align-center space-evenly elevation-0">
-    <div class="d-flex flex-column align-center">
-      <v-card-title class="mb-12 text-h4 font-weight-medium">Iniciar Sesión</v-card-title>
-    </div>
-    <v-form class="form-container">
-      <v-container class="d-flex flex-column">
-        <v-text-field
-            label="E-mail"
-            placeholder="name@example.com"
-            required
-            outlined
-        >
-        </v-text-field>
-        <v-text-field
-            name="input-10-1"
-            label="Password"
-            hint="Al menos 8 caracteres"
-            placeholder="password"
-            required
-            outlined
-        ></v-text-field>
-      </v-container>
-      <v-card-actions class="d-flex justify-center">
-        <v-btn class="text-capitalize text-body-2" color="error" to="/home-c">Login Cliente</v-btn>
-      </v-card-actions>
-      <v-card-actions class="d-flex justify-center">
-        <v-btn class="text-capitalize text-body-2" color="error" to="/home-n">Login Nutricionista</v-btn>
-      </v-card-actions>
-    </v-form>
-  </v-card>
+  <section class="section-container">
+    <v-row class="signin">
+      <v-col cols="12" class="left">
+        <h1>{{text}}</h1>
+      </v-col>
+      <v-col cols="16" class="right">
+        <h2>LOGIN</h2>
+        <validation-observer ref="observer">
+          <v-form @submit.prevent="submit">
+            <validation-provider v-slot="{ errors }" name="email" rules="required|email">
+              <v-text-field
+                v-model="email"
+                :error-messages="errors"
+                label="Email"
+                required
+                outlined
+                dark
+                filled
+                dense
+              ></v-text-field>
+            </validation-provider>
+            <validation-provider v-slot="{ errors }" name="password" rules="required">
+              <v-text-field
+                v-model="password"
+                :error-messages="errors"
+                label="Password"
+                :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="showPass = !showPass"
+                required
+                outlined
+                dense
+                dark
+                filled
+                :type="showPass ? 'text' : 'password'"
+              ></v-text-field>
+            </validation-provider>
+            <div class="text-center">
+              <v-btn class="signin-btn" type="submit" rounded color="white" dark>
+                Sign In
+              </v-btn>
+            </div>
+          </v-form>
+        </validation-observer>
+      </v-col>
+    </v-row>
+  </section>
 </template>
 
 <script>
-  export default {
-    name: "login-form"
+import { required, email } from 'vee-validate/dist/rules'
+import { extend, ValidationProvider, setInteractionMode, ValidationObserver } from 'vee-validate'
+import axios from 'axios'
+
+setInteractionMode('eager')
+
+extend('required', {
+  ...required,
+  message: '{_field_} can not be empty'
+})
+
+extend('email', {
+  ...email,
+  message: 'Email must be valid'
+})
+
+export default {
+  components: {
+    ValidationProvider,
+    ValidationObserver
+  },
+  data: () => ({
+    email: '',
+    password: '',
+    showPass: false,
+    auth: '',
+    pass: ''
+  }),
+  computed: {
+    params() {
+      return {
+        email: this.email,
+        password: this.password
+      }
+    }
+  },
+  methods: {
+    clear(){
+      this.email = '',
+      this.password = ''
+    },
+    async loginC(){
+       let me = this;
+         axios.get('api/Clients/GetClientByEmail/'+this.email)
+         .then(function(response){
+           me.auth = response.data.password;
+         });
+     },
+     loginNa(){
+        let me = this;
+        axios.get('api/Nutritionists/GetNutritionistByEmail/'+this.email)
+        .then(function(response){
+            me.auth = response.data.password;
+        }).catch(function(error){
+            console.log(error);
+      });
+     },
+     goto(){
+       this.$router.push({name: 'HomeC'});
+     },
+    async submit() {
+       try {
+         let me = this;
+         axios.get('api/Clients/GetClientByEmail/'+this.email)
+         .then(function(response){
+           if(me.password == response.data.password){
+             me.$router.push({name: 'HomeC'});
+           }
+           else{
+             alert('La contraseña es incorrecta');
+           }
+         });
+         }
+         finally{
+          let me = this;
+         axios.get('api/Nutritionists/GetNutritionistByEmail/'+this.email)
+         .then(function(response){
+           if(me.password == response.data.password){
+             me.$router.push({name: 'HomeN'});
+           }
+           else{
+             alert('La contraseña es incorrecta');
+           }
+         });
+       }
+    },
+    clear() {
+      this.email = ''
+      this.password = null
+      this.$refs.observer.reset()
+    }
   }
+}
 </script>

@@ -16,6 +16,16 @@ const routes = [
     component: () => import('../views/HomeN.vue')
   },
   {
+    path: '/availableNutritionists',
+    name: 'availableNutritionists',
+    component: () => import('../components/Appointment/AvailableNutritionists.vue')
+  },
+  {
+    path: '/nutritionistSelected',
+    name: 'nutritionistSelected',
+    component: () => import('../components/Appointment/NutritionistSelected.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue')
@@ -56,7 +66,6 @@ const routes = [
     component: () => import('../components/ProfessionalProfile/CreateProfessionalProfile.vue')
   },
   {
-   
     path: '/appointments',
     name: 'appointments',
     component: () => import('../components/Appointment/CreateAppointment.vue')
