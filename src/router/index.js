@@ -41,6 +41,16 @@ const routes = [
     component: () => import('../components/Recipe/CreateRecipe.vue')
   },
   {
+    path: '/recipes-client',
+    name: 'recipesClient',
+    component: () => import('../components/Recipe/ListRecipesClient.vue')
+  },
+  {
+    path: '/recipes-nutritionist',
+    name: 'recipesNutritionist',
+    component: () => import('../components/Recipe/ListRecipesNutritionist.vue')
+  },
+  {
     path: '/recommendations',
     name: 'recommendations',
     component: () => import('../components/Recommendation/CreateRecommendation.vue')
@@ -88,6 +98,16 @@ const routes = [
     path: '/ListPaymentMethods',
     name: 'ListPaymentMethods',
     component: () => import('../components/PaymentMethod/ListPaymentMethods.vue')
+  },
+  {
+    path: '/published-recommendations',
+    name: 'PublishedRecommendations',
+    component: () => import('../components/Nutritionist/PublishedRecommendations.vue')
+  },
+  {
+    path: '/published-recipes',
+    name: 'PublishedRecipes',
+    component: () => import('../components/Nutritionist/PublishedRecipes.vue')
   },
 
 

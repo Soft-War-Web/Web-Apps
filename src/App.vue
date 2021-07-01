@@ -45,6 +45,26 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item :to="{name:'recipesClient'}">
+            <v-list-item-action>
+              <v-icon>table_chart</v-icon>
+            </v-list-item-action> 
+            <v-list-item-content>
+              <v-list-item-title>
+                Recipes Client
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item :to="{name:'recipesNutritionist'}">
+            <v-list-item-action>
+              <v-icon>table_chart</v-icon>
+            </v-list-item-action> 
+            <v-list-item-content>
+              <v-list-item-title>
+                Recipes Nutritionist
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
           <v-list-item :to="{name:'recommendations'}">
             <v-list-item-action>
               <v-icon>table_chart</v-icon>
@@ -52,6 +72,26 @@
             <v-list-item-content>
               <v-list-item-title>
                 Recommendations
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item :to="{name:'PublishedRecommendations'}">
+            <v-list-item-action>
+              <v-icon>table_chart</v-icon>
+            </v-list-item-action> 
+            <v-list-item-content>
+              <v-list-item-title>
+                Published Recommendations
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item :to="{name:'PublishedRecipes'}">
+            <v-list-item-action>
+              <v-icon>table_chart</v-icon>
+            </v-list-item-action> 
+            <v-list-item-content>
+              <v-list-item-title>
+                Published Recipes
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
