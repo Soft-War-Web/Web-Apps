@@ -143,7 +143,7 @@
             });
         },
         close() {
-            this.dialog = false
+            this.dialog = false;
         },
         clean(){
             this.id = "";

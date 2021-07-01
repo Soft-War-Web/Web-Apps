@@ -27,12 +27,6 @@
             <v-card-text class="text--primary">
             <div>{{recipe.favorites}}</div>
             </v-card-text>
-            <v-card-actions>
-            <v-btn fab dark small color="orange" @click="updatefavorite(recipe)">
-            <v-icon dark>star</v-icon>
-            </v-btn>
-            <v-btn color="orange" text @click="addFavorite(recipe)"> Añadir a favoritos </v-btn>
-            </v-card-actions>
         </v-card>
     </div>
 </div>
