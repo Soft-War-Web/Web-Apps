@@ -114,7 +114,7 @@ export default {
          axios.get('api/Clients/GetClientByEmail/'+this.email)
          .then(function(response){
            if(me.password == response.data.password){
-             me.$router.push({name: 'HomeC', params: {id: me.email}});
+             me.$router.push({name: 'HomeC', params: {id: response.data.clientId}});
            }
            else{
              alert('La contraseña es incorrecta');
@@ -126,7 +126,7 @@ export default {
          axios.get('api/Nutritionists/GetNutritionistByEmail/'+this.email)
          .then(function(response){
            if(me.password == response.data.password){
-             me.$router.push({name: 'HomeN'});
+             me.$router.push({name: 'HomeN', params: {id: response.data.nutritionistId}});
            }
            else{
              alert('La contraseña es incorrecta');

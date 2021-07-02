@@ -31,9 +31,6 @@
                     <div>{{recipe.favorites}}</div>
                     </v-card-text>
                     <v-card-actions>
-                    <v-btn fab dark small color="orange" @click="updatefavorite(recipe)">
-                    <v-icon dark>star</v-icon>
-                    </v-btn>
                     <v-btn color="orange" text @click="deleteFavoriteRecipe(recipe)"> Quitar de favoritos </v-btn>
                     </v-card-actions>
                 </v-card>
@@ -89,12 +86,11 @@
         recipes: [],
         favoriteRecipes: [],
         nutritionists: [],
-        nutritionistId: 0,
+        clientId: 0,
         search: "",
         editedIndex: -1,
         loading: false,
     }),
-
     computed: {
         formTitle(){
             return this.editedIndex === -1 ? 'New Recipe' : 'Edit Recipe'
@@ -106,6 +102,7 @@
           },
         },
         created () {
+            this.clientId=this.$route.params.id;
             this.list();
         },
     methods: {
@@ -122,8 +119,8 @@
                 }).catch(function(error){
                   console.log(error);
                 });
-                axios.get('api/Clients/GetRecipesFromClient/'+1,{
-                    'ClientId': 1
+                axios.get('api/Clients/GetRecipesFromClient/'+this.clientId,{
+                    'ClientId': this.clientId
                 }).then(function(response){
                   me.favoriteRecipes = response.data;
                   console.log(response.data);
@@ -147,8 +144,8 @@
            addFavorite(item){
                let me = this;
                if(confirm('¿Estás seguro de que quieres incluir esta receta a tu lista de favoritos?')){
-                axios.put('api/Clients/AddFavoriteRecipe/'+1+'/'+item.recipeId,{
-                      'ClientId': 1},{
+                axios.put('api/Clients/AddFavoriteRecipe/'+this.clientId+'/'+item.recipeId,{
+                      'ClientId': this.clientId},{
                       'RecipeId': item.recipeId
                 }).then(function(response){
                   console.log(item.id);
@@ -160,15 +157,6 @@
                 });
                }
            },
-            getNutritionistById(){
-                axios.get('api/Nutritionists/GetNutritionistById/'+this.nutritionistId)
-                .then(function(response){
-                  this.nutritionistId=response.data.nutritionistId;
-                }).catch(function(error){
-                  console.log(error);
-                });
-            },
-
             close() {
                 this.dialog = false
             },
@@ -187,8 +175,8 @@
             deleteFavoriteRecipe (item) {
               let me = this;
               if(confirm('¿Estás seguro de que quieres eliminar esta receta de tu lista de favoritos?'))
-                axios.put('api/Clients/RemoveFavoriteRecipe/'+1+'/'+item.recipeId,{
-                      'ClientId': 1},{
+                axios.put('api/Clients/RemoveFavoriteRecipe/'+this.clientId+'/'+item.recipeId,{
+                      'ClientId': this.clientId},{
                       'RecipeId': item.recipeId
                 }).then(function(response){
                   console.log(item.id);

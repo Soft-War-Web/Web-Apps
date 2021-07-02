@@ -48,7 +48,7 @@ export default{
     email: '',
     createdAt: new Date(),
     clients: '',
-    clientId: 1,
+    clientId: 0,
     showPassword: false,
     rules: {
       required: value => !!value || 'Required.',
@@ -57,6 +57,7 @@ export default{
     },
   }),
   created () {
+    this.clientId=this.$route.params.id;
     this.listByClientId();
   },
   methods: {

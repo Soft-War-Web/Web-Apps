@@ -53,8 +53,44 @@
 
   export default {
     name: 'HomeN',
+    mounted(){
+     this.idRoute=this.$route.params.id;
+    },
 
     components: {
     },
+    data: () => ({
+      idRoute: null
+    }),
+    methods:{
+      goProfile(){
+        let me = this;
+        me.$router.push({name: 'nutritionistProfile', params: {id: me.idRoute}});
+      },
+      goAppointment(){
+        let me = this;
+        me.$router.push({name: 'availableNutritionists', params: {id: me.idRoute}});
+      },
+      goAppointmentHistory(){
+        let me = this;
+        me.$router.push({name: 'appointmentsHistoryClient', params: {id: me.idRoute}});
+      },
+      goRecipes(){
+        let me = this;
+        me.$router.push({name: 'recipesClient', params: {id: me.idRoute}});
+      },
+      goRecommendations(){
+        let me = this;
+        me.$router.push({name: 'recommendations', params: {id: me.idRoute}});
+      },
+      goPaymentMethods(){
+        let me = this;
+        me.$router.push({name: 'ListPaymentMethods', params: {id: me.idRoute}});
+      },
+      goBills(){
+        let me = this;
+        me.$router.push({name: 'ListBill', params: {id: me.idRoute}});
+      }
+    }
   }
 </script>

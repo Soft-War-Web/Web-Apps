@@ -11,12 +11,12 @@ const routes = [
     component: () => import('../views/HomeC.vue')
   },
   {
-    path: '/home-n',
+    path: '/home-n/:id',
     name: 'HomeN',
     component: () => import('../views/HomeN.vue')
   },
   {
-    path: '/availableNutritionists',
+    path: '/availableNutritionists/:id',
     name: 'availableNutritionists',
     component: () => import('../components/Appointment/AvailableNutritionists.vue')
   },
@@ -41,22 +41,22 @@ const routes = [
     component: () => import('../components/Recipe/CreateRecipe.vue')
   },
   {
-    path: '/recipes-client',
+    path: '/recipes-client/:id',
     name: 'recipesClient',
     component: () => import('../components/Recipe/ListRecipesClient.vue')
   },
   {
-    path: '/recipes-nutritionist',
+    path: '/recipes-nutritionist/:id',
     name: 'recipesNutritionist',
     component: () => import('../components/Recipe/ListRecipesNutritionist.vue')
   },
   {
-    path: '/recommendations',
+    path: '/recommendations/:id',
     name: 'recommendations',
-    component: () => import('../components/Recommendation/CreateRecommendation.vue')
+    component: () => import('../components/Recommendation/ListRecommendations.vue')
   },
   {
-    path: '/clientProfile',
+    path: '/clientProfile/:id',
     name: 'clientProfile',
     component: () => import('../components/Client/ProfileClient.vue')
   },
@@ -66,7 +66,7 @@ const routes = [
     component: () => import('../components/Nutritionist/CreateNutritionist.vue')
   },
   {
-    path: '/nutritionistProfile',
+    path: '/nutritionistProfile/:id',
     name: 'nutritionistProfile',
     component: () => import('../components/Nutritionist/ProfileNutritionist.vue')
   },
@@ -79,6 +79,16 @@ const routes = [
     path: '/appointments',
     name: 'appointments',
     component: () => import('../components/Appointment/CreateAppointment.vue')
+  },
+  {
+    path: '/appointmentsHistoryClient/:id',
+    name: 'appointmentsHistoryClient',
+    component: () => import('../components/Client/AppointmentHistoryClient.vue')
+  },
+  {
+    path: '/appointmentsHistoryNutritionist/:id',
+    name: 'appointmentsHistoryNutritionist',
+    component: () => import('../components/Client/AppointmentHistoryClient.vue')
   },
 
 
@@ -95,10 +105,16 @@ const routes = [
   },
 
   {
-    path: '/ListPaymentMethods',
+    path: '/ListPaymentMethods/:id',
     name: 'ListPaymentMethods',
     component: () => import('../components/PaymentMethod/ListPaymentMethods.vue')
   },
+  {
+    path: '/ListBill/:id',
+    name: 'ListBill',
+    component: () => import('../components/Bill/ListBill.vue')
+  },
+
   {
     path: '/published-recommendations',
     name: 'PublishedRecommendations',
