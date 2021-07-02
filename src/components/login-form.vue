@@ -89,25 +89,6 @@ export default {
       this.email = '',
       this.password = ''
     },
-    async loginC(){
-       let me = this;
-         axios.get('api/Clients/GetClientByEmail/'+this.email)
-         .then(function(response){
-           me.auth = response.data.password;
-         });
-     },
-     loginNa(){
-        let me = this;
-        axios.get('api/Nutritionists/GetNutritionistByEmail/'+this.email)
-        .then(function(response){
-            me.auth = response.data.password;
-        }).catch(function(error){
-            console.log(error);
-      });
-     },
-     goto(){
-       this.$router.push({name: 'HomeC'});
-     },
     async submit() {
        try {
          let me = this;

@@ -10,7 +10,7 @@
       <v-card-title>{{nutritionist.username}}</v-card-title>
     </v-img>
 
-    <v-card-subtitle class="pb-0">Name</v-card-subtitle>
+    <v-card-subtitle class="pb-0">Nombre</v-card-subtitle>
     <v-card-text class="text--primary">
       <div>{{nutritionist.firstName+' '+nutritionist.lastName}}</div>
     </v-card-text>
@@ -18,13 +18,13 @@
     <v-card-text class="text--primary">
       <div>{{nutritionist.email}}</div>
     </v-card-text>
-    <v-card-subtitle class="pb-0">CnpNumber</v-card-subtitle>
+    <v-card-subtitle class="pb-0">Número CNP</v-card-subtitle>
     <v-card-text class="text--primary">
       <div>{{nutritionist.cnpNumber}}</div>
     </v-card-text>
 
     <v-card-actions>
-      <v-btn to="/nutritionistSelected"> Agendar </v-btn>
+      <v-btn text @click="goSelectedNutritionist(nutritionist)"> Agendar </v-btn>
     </v-card-actions>
   </v-card>
   </div>
@@ -35,27 +35,33 @@
 import axios from 'axios'
 export default {
     data: () => ({
-        dialog: false,
+        idRoute: null,
         id: '',
         username: '',
         password: '',
         firstName: '',
         lastName: '',
         email: '',
+        clientId: '',
         cnpNumber:'',
         createdAt: '',    
         nutritionists: [],
         loading: false,
     }),
-    created () {
+    created () 
+    {
+      this.clientId=this.$route.params.id;
       this.list();
-      },
-    methods: {
-      reserve () {
+    },
+    methods: 
+    {
+      reserve ()
+      {
         this.loading = true
         setTimeout(() => (this.loading = false), 2000)
       },
-      list(){
+      list()
+      {
         let me = this;
         axios.get('api/Nutritionists')
         .then(function(response){
@@ -64,15 +70,12 @@ export default {
           }).catch(function(error){
             console.log(error);
             });
-            },
-            getNutritionistById(){
-                axios.get('api/Nutritionists/GetNutritionistById/'+this.nutritionistId)
-                .then(function(response){
-                  this.nutritionistId=response.data.nutritionistId;
-                }).catch(function(error){
-                  console.log(error);
-                });
-            },     
+      },
+      goSelectedNutritionist(item)
+      {
+        let me = this;
+        me.$router.push({name: 'nutritionistSelected', params: {clientId: me.idRoute, nutritionistId: item.nutritionistId}});
+      },
     },
   }
 </script>

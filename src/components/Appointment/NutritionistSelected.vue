@@ -38,24 +38,29 @@
 <script>
 import axios from 'axios'
   export default {
-    data: () => ({
-            id: '',
-            username: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            cnpNumber:'',
-            nutritionistId: 1,
-            clientId: 1,
-            nutritionistNotes: '',
-            loading: false,
-            appointmentDate: new Date(),
-            amount: 35,
-            ruc: 12345,
-            billDate: new Date()
+    data: () => 
+    ({
+      id: '',
+      username: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      cnpNumber:'',
+      nutritionistId: '',
+      clientId: '',
+      nutritionistNotes: '',
+      loading: false,
+      appointmentDate: new Date(),
+      amount: 35,
+      ruc: 12345,
+      billDate: new Date(),
+      appointmentId: '',
+      dietId: ''
     }),
-    created () 
+    created()
     {
+      this.clientId=this.$route.params.id;
+      this.nutritionistId=this.$route.params.nutritionistId;
       this.getNutritionist();
     },
     methods: {
@@ -81,9 +86,9 @@ import axios from 'axios'
       },
       submit()
       {
+        let me = this;
         try
         {
-          let me = this;
           axios.post('api/Appointments',{
             'clientId': me.clientId,
             'nutritionistId': me.nutritionistId,
@@ -93,13 +98,42 @@ import axios from 'axios'
         }
         finally
         {
-          let me = this;
           axios.post('api/Bills',{
             'clientId': me.clientId,
             'amount': me.amount,
             'ruc': me.ruc,
             'billDate': me.billDate,
             })
+        }
+        try
+        {
+          axios.post('api/Diets',{
+            'dietName': 'a',
+            'dietDescription': 'a',
+            'createdAt': me.appointmentDate
+          })
+        }
+        finally
+        {
+          axios.get('api/Appointments/GetLastAppointment')
+          .then(function(response){
+            me.appointmentId = response.data.appointmentId;
+          })
+        }
+        try
+        {
+          axios.get('api/Diets/GetLastDiet')
+          .then(function(response){
+            me.dietId = response.data.dietId;
+          })
+        }
+        finally
+        {
+          axios.put('api/Appointments/AssingDiet/'+me.appointmentId+'/'+me.dietId,{
+            'AppointmentId': me.appointmentId,
+            'DietId': me.dietId
+          })
+          this.$router.push({name: 'HomeC', params: {id: this.clientId}});
         }
       }
     },
