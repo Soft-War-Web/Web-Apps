@@ -21,7 +21,7 @@
           <v-list-item slot="activator">
             <v-list-item-content>
               <v-list-item-title>
-                Testeos
+                Login
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -31,157 +31,10 @@
             </v-list-item-action> 
             <v-list-item-content>
               <v-list-item-title>
-                Clientes
+                Login
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item :to="{name:'recipes'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                Recipes
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item :to="{name:'recipesClient'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                Recipes Client
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item :to="{name:'recipesNutritionist'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                Recipes Nutritionist
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item :to="{name:'recommendations'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                Recommendations
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item :to="{name:'PublishedRecommendations'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                Published Recommendations
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item :to="{name:'PublishedRecipes'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                Published Recipes
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item :to="{name:'professionalProfile'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                ProfessionalProfile
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item :to="{name:'nutritionistProfile'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                NutritionistProfile
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item :to="{name:'nutritionists'}">
-           <v-list-item-action>
-            <v-icon>table_chart</v-icon>
-           </v-list-item-action> 
-           <v-list-item-content>
-             <v-list-item-title>
-              Nutritionists
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-          <v-list-item :to="{name:'clientProfile'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                Client Profile
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-list-item :to="{name:'appointments'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                Appointment
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
-
-          <v-list-item :to="{name:'Specialty'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                Specialty
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item :to="{name:'PaymentMethod'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                PaymentMethod
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item> 
-          <v-list-item :to="{name:'ListPaymentMethods'}">
-            <v-list-item-action>
-              <v-icon>table_chart</v-icon>
-            </v-list-item-action> 
-            <v-list-item-content>
-              <v-list-item-title>
-                PaymentMethod
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item> 
-
-
-
-
 
         </v-list-group>
       </template>
