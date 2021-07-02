@@ -61,7 +61,6 @@ export default{
     this.listByClientId();
   },
   methods: {
-    
     listByClientId(){
       let me = this;
       axios.get('api/Clients/GetClientById/'+this.clientId)
