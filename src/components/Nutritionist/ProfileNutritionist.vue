@@ -280,25 +280,20 @@ export default{
     saveP()
     {
       let me = this;
-      confirm('ewe2');
       if(me.fp==1)
       {
-        confirm('ewe1');
         axios.post('api/Professionalprofiles',{
           'nutritionistId': me.nutritionistId,
           'professionalExperienceDescription': me.professionalExperienceDescription
         })
-        confirm('ewe2');
         this.closeP();
       }
       else{
-               confirm('fefe');
                 axios.put('api/Professionalprofiles/PutProfessionalprofile',{
                           'professionalprofileId': this.professionalprofileId,
                           'nutritionistId': this.nutritionistId,
                           'professionalExperienceDescription': this.professionalExperienceDescription                         
                 }).then(function(response){
-                  confirm(this.username);
                   me.closeP();                 
                   me.listByNutritionistId();
                   me.clean();
