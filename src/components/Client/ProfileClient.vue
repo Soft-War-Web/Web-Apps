@@ -33,11 +33,11 @@
       <div><h2><b>Email:</b> {{email}}</h2></div>
       </v-card-text>
       <v-card-actions>
-         <template v-slot:activator="{ on }">
+        
+        <v-dialog v-model="dialog" max-width="500px">
+          <template v-slot:activator="{ on }">
             <v-btn color="green" v-on="on">Modificar información</v-btn>
           </template>
-        <v-dialog v-model="dialog" max-width="500px">
-         
           <v-card>
             <v-card-title>
               <span class="headline">Modificar información</span>
