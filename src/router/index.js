@@ -21,7 +21,7 @@ const routes = [
     component: () => import('../components/Appointment/AvailableNutritionists.vue')
   },
   {
-    path: '/nutritionistSelected',
+    path: '/nutritionistSelected/:id/:nutritionistId',
     name: 'nutritionistSelected',
     component: () => import('../components/Appointment/NutritionistSelected.vue')
   },
@@ -34,6 +34,11 @@ const routes = [
     path: '/clients',
     name: 'clients',
     component: () => import('../components/Client/CreateClient.vue')
+  },
+  {
+    path: '/nutritionists',
+    name: 'nutritionists',
+    component: () => import('../components/Nutritionist/CreateNutritionist.vue')
   },
   {
     path: '/recipes',
@@ -59,11 +64,6 @@ const routes = [
     path: '/clientProfile/:id',
     name: 'clientProfile',
     component: () => import('../components/Client/ProfileClient.vue')
-  },
-  {
-    path: '/nutritionists',
-    name: 'nutritionists',
-    component: () => import('../components/Nutritionist/CreateNutritionist.vue')
   },
   {
     path: '/nutritionistProfile/:id',

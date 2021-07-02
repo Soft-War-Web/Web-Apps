@@ -7,25 +7,20 @@
       </v-toolbar>
     </template >
     <div class="d-flex flex-wrap  justify-space-between">
-        <v-card class="mx-auto mb-10" max-width="400" v-for="(recipe,i) in recipes" :key="i" >
+        <v-card class="mx-auto mb-10" max-width="400" v-for="(appointment,i) in appointments" :key="i" >
             <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
-                <v-card-title>{{recipe.name}}</v-card-title>
             </v-img>
-            <v-card-subtitle class="pb-0">Cliente</v-card-subtitle>
             <v-card-text class="text--primary">
-            <div>{{recipe.description}}</div>
+            <div><b>Cliente:</b> {{getClientById(appointment.clientId)}}</div>
             </v-card-text>
-            <v-card-subtitle class="pb-0">Fecha de asesoría</v-card-subtitle>
             <v-card-text class="text--primary">
-            <div>{{recipe.preparation}}</div>
+            <div><b>Fecha:</b> {{appointment.appointmentDate}}</div>
             </v-card-text>
-            <v-card-subtitle class="pb-0">Dieta</v-card-subtitle>
             <v-card-text class="text--primary">
-            <div>{{recipe.ingredients}}</div>
+            <div><b>Dieta:</b> {{getDietById(appointment.dietId)}}</div>
             </v-card-text>
-            <v-card-subtitle class="pb-0">Anotaciones</v-card-subtitle>
             <v-card-text class="text--primary">
-            <div>{{recipe.favorites}}</div>
+            <div><b>Anotaciones:</b> {{appointment.nutritionistNotes}}</div>
             </v-card-text>
         </v-card>
     </div>
@@ -46,9 +41,11 @@
         createdAt: new Date(),
         favorites: 0,
         recipes: [],
-        favoriteRecipes: [],
+        appointments: [],
         nutritionists: [],
         nutritionistId: 0,
+        clientName: '',
+        dietName: '',
         search: "",
         editedIndex: -1,
         loading: false,
@@ -57,7 +54,7 @@
     computed: {
         formTitle(){
             return this.editedIndex === -1 ? 'New Recipe' : 'Edit Recipe'
-        },
+        }
     },
         watch: {
           dialog (val){
@@ -65,6 +62,7 @@
           },
         },
         created () {
+            this.nutritionistId=this.$route.params.id;
             this.list();
         },
     methods: {
@@ -74,17 +72,11 @@
       },
       list(){
                 let me = this;
-                axios.get('api/Recipes')
+                axios.get('api/Appointments/GetAppointmentByNutritionist/'+this.nutritionistId,{
+                  'id': this.nutritionistId
+                })
                 .then(function(response){
-                  me.recipes = response.data;
-                  console.log(response.data);
-                }).catch(function(error){
-                  console.log(error);
-                });
-                axios.get('api/Clients/GetRecipesFromClient/'+1,{
-                    'ClientId': 1
-                }).then(function(response){
-                  me.favoriteRecipes = response.data;
+                  me.appointments = response.data;
                   console.log(response.data);
                 }).catch(function(error){
                   console.log(error);
@@ -95,7 +87,6 @@
         this.dietId = item.dietId;
         this.appointmentId = item.appointmentId;
         this.appointmentDate = item.appointmentDate;
-
       },
             getNutritionistById(){
                 axios.get('api/Nutritionists/GetNutritionistById/'+this.nutritionistId)
@@ -105,7 +96,28 @@
                   console.log(error);
                 });
             },
-
+            getClientById: function(id){
+              let me = this;
+              axios.get('api/Clients/GetClientById/'+ id,{
+                'id': id
+              }).then(function(response){
+                me.clientName = response.data.firstName + ' ' + response.data.lastName;
+              }).catch(function(error){
+                console.log(error);
+              });
+              return this.clientName;
+            },
+            getDietById: function(id2){
+              let me = this;
+              axios.get('api/Diets/GetDietById/'+ id2,{
+                'id': id2
+              }).then(function(response){
+                me.dietName = response.data.dietName;
+              }).catch(function(error){
+                console.log(error);
+              });
+              return this.dietName;
+            },
             close() {
                 this.dialog = false
             },
@@ -121,6 +133,7 @@
                 this.editedIndex = -1;
                 this.nutritionistId= "";
             }
+
     },
   }
 </script>
