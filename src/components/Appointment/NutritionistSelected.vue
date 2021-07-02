@@ -1,7 +1,9 @@
 <template>
 <div style=";width: 100% ">
-  <v-toolbar flat color="blue">
+  <v-toolbar>
     <v-toolbar-title>Nutricionista seleccionado</v-toolbar-title>
+      <v-spacer></v-spacer>
+    <v-btn color="green" @click="goBack()">Atrás</v-btn>
   </v-toolbar>
   <br>
   <div class="d-flex flex-wrap  left-space-between">
@@ -23,10 +25,10 @@
     </v-card-text>
   </v-card>
   <div class="d-flex flex-wrap  justify-space-between mx-auto mb-2">
-    <v-btn text @click="submit">{{appointmentDate}}</v-btn>
-    <v-btn text @click="submit">{{appointmentDate}}</v-btn>
-    <v-btn text @click="submit">{{appointmentDate}}</v-btn>
-    <v-btn text @click="submit">{{appointmentDate}}</v-btn>
+    <v-btn color="green" @click="submit">{{appointmentDate}}</v-btn>
+    <v-btn color="green" @click="submit">{{appointmentDate}}</v-btn>
+    <v-btn color="green" @click="submit">{{appointmentDate}}</v-btn>
+    <v-btn color="green" @click="submit">{{appointmentDate}}</v-btn>
   </div>
   <div class="d-flex flex-wrap  left-space-between mx-auto mb-8">
  
@@ -141,7 +143,12 @@ import axios from 'axios'
           })
           this.$router.push({name: 'HomeC', params: {id: this.clientId}});
         }
-      }
+      },
+      
+      goBack(){
+        let me = this;
+        me.$router.push({name: 'availableNutritionists', params: {id: this.clientId}});
+      },
     },
   }
 </script>

@@ -4,6 +4,8 @@
     :items="bills"
     sort-by="name"
     class="elevation-1" style="width:70%">
+    <div>
+    </div>
     <template v-slot:item="{ item }">
       <tr>
         <td>{{ item.billId }}</td>
@@ -13,6 +15,7 @@
       </tr>
     </template>
   </v-data-table>
+  
 </template>
 
 <script>

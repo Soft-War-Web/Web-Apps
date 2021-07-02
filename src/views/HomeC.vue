@@ -1,5 +1,10 @@
 <template>
   <v-card>
+    <v-toolbar>
+        <v-toolbar-title>Menu Cliente</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn color="green" @click="goBack()">Atrás</v-btn>
+      </v-toolbar>
     <v-row cols="12">
       <v-col>
         <v-img
@@ -63,6 +68,7 @@ import axios from 'axios'
       idRoute: null,
       lastAppointment: '',
       lastDiet: '',
+      userType: "client"
     }),
     created(){
       axios.put('api/Appointments/AssingDiet/'+1+'/'+1,{
@@ -89,7 +95,7 @@ import axios from 'axios'
       },
       goRecommendations(){
         let me = this;
-        me.$router.push({name: 'recommendations', params: {id: me.idRoute}});
+        me.$router.push({name: 'recommendations', params: {id: me.idRoute, userType: me.userType}});
       },
       goPaymentMethods(){
         let me = this;
@@ -105,6 +111,10 @@ import axios from 'axios'
           'AppointmentId': this.lastAppointment},{
           'DietId': this.lastDiet
         })
+      },
+      goBack(){
+        let me = this;
+        me.$router.push({name: 'Login'});
       }
     }
   }

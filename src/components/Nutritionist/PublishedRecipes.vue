@@ -4,10 +4,11 @@
       <v-toolbar flat color="white">
         <v-toolbar-title>Tus Recetas</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
+        <v-spacer></v-spacer><v-spacer></v-spacer>
+        <v-btn color="green" @click="goBack()">Atrás</v-btn>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">Publicar receta</v-btn>
+            <v-btn color="green" v-on="on">Publicar receta</v-btn>
           </template>
           <v-card>
             <v-card-title>
@@ -190,6 +191,11 @@
                   console.log(error);
                 });
             },
+      
+      goBack(){
+        let me = this;
+        me.$router.push({name: 'HomeN', params: {id: this.nutritionistId}});
+      }
     },
   }
 </script>

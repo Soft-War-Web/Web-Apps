@@ -4,6 +4,8 @@
       <v-toolbar flat color="white">
         <v-toolbar-title>Recetas</v-toolbar-title>
         <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-btn color="green" @click="goBack()">Atrás</v-btn>
       </v-toolbar>
     </template >
     <div class="d-flex flex-wrap  justify-space-between">
@@ -110,7 +112,11 @@
         this.lastModification = "";
         this.editedIndex = -1;
         this.nutritionistId= "";
-        }
+        },
+      goBack(){
+        let me = this;
+        me.$router.push({name: 'HomeN', params: {id: this.nutritionistId}});
+      }
     },
   }
 </script>

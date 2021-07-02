@@ -3,16 +3,25 @@
     <template >
       <v-toolbar flat color="white">
         <v-toolbar-title>Método de pago</v-toolbar-title>
-        <v-divider 
-          class="mx-4" 
-          inset
-          vertical
-        ></v-divider>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-btn color="green" @click="goBack()">Atrás</v-btn>
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="700px">
           <template v-slot:activator="{ on }">
-            <v-btn color="orange" text dark class="mb-2" v-on="on">Añadir método de pago</v-btn>
+            <v-btn color="green" v-on="on">Añadir método de pago</v-btn>
           </template>
           <div style="height: 50%; width: 100%;" class="d-flex flex-column align-center mx-auto" >
             <v-card class="d-flex flex-column" color:="darken-2">
@@ -237,6 +246,12 @@ export default{
           console.log(error); 
       });
     },
+    
+      
+      goBack(){
+        let me = this;
+        me.$router.push({name: 'HomeC', params: {id: this.clientId}});
+      }
   },
 }
 </script>

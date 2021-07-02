@@ -1,7 +1,9 @@
 <template>
 <div style=";width: 100% ">
-      <v-toolbar flat color="blue">
+      <v-toolbar>
         <v-toolbar-title>Nutricionistas disponibles</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn color="green" @click="goBack()">Atrás</v-btn>
       </v-toolbar>
     <br>
     <div class="d-flex flex-wrap  justify-space-between">
@@ -24,7 +26,7 @@
     </v-card-text>
 
     <v-card-actions>
-      <v-btn text @click="goSelectedNutritionist(nutritionist)"> Agendar </v-btn>
+      <v-btn color="green" @click="goSelectedNutritionist(nutritionist)"> Agendar </v-btn>
     </v-card-actions>
   </v-card>
   </div>
@@ -76,6 +78,11 @@ export default {
         let me = this;
         me.$router.push({name: 'nutritionistSelected', params: {clientId: me.idRoute, nutritionistId: item.nutritionistId}});
       },
+      
+      goBack(){
+        let me = this;
+        me.$router.push({name: 'HomeC', params: {id: this.clientId}});
+      }
     },
   }
 </script>

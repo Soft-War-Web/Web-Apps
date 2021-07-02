@@ -1,5 +1,10 @@
 <template>
   <v-card>
+    <v-toolbar>
+        <v-toolbar-title>Menu Nutricionista</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn color="green" @click="goBack()">Atrás</v-btn>
+      </v-toolbar>
     <v-row cols="12">
       <v-col>
         <v-img
@@ -60,7 +65,8 @@
     components: {
     },
     data: () => ({
-      idRoute: null
+      idRoute: null,
+      userType: "nutri"
     }),
     methods:{
       goProfile(){
@@ -81,7 +87,7 @@
       },
       goRecommendations(){
         let me = this;
-        me.$router.push({name: 'recommendations', params: {id: me.idRoute}});
+        me.$router.push({name: 'recommendations', params: {id: me.idRoute, userType: me.userType}});
       },
       goPublishedRecipes(){
         let me = this;
@@ -90,6 +96,10 @@
       goPublishedRecommendations(){
         let me = this;
         me.$router.push({name: 'PublishedRecommendations', params: {id: me.idRoute}});
+      },
+      goBack(){
+        let me = this;
+        me.$router.push({name: 'Login'});
       }
     }
   }

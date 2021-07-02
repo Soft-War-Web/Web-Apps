@@ -2,18 +2,17 @@
   <div>
   <v-card class="d-flex d-flex flex-column flex-sm-row ">
     <div class="d-flex flex-column align-center">
-      <v-card-title class="mb-12 text-h6 text-md-h4 font-weight-medium">Perfíl Nutricionista</v-card-title>
+      <v-card-title class="mb-12 text-h6 text-md-h4 font-weight-medium">Perfil Nutricionista</v-card-title>
       <v-img
           src="https://bootdey.com/img/Content/avatar/avatar7.png"
           alt=""
           max-width="400px"
           max-height="400px"
       ></v-img>
-      <v-card-subtitle class="pb-1 " >Usuario</v-card-subtitle>
       <v-card-text class="d-flex flex-column align-items-center text-center">
-      <div>{{username}}</div>
+      <div><h2>{{username}}</h2></div>
       </v-card-text>  
-      <v-card-subtitle class="pb-1 " >Perfíl personal</v-card-subtitle>
+      <v-card-subtitle class="pb-1 " >Perfil personal</v-card-subtitle>
       <v-card-text class="d-flex flex-column align-items-center text-center">
       <div>{{professionalExperienceDescription}}</div>
       </v-card-text> 
@@ -38,23 +37,19 @@
 
     </v-card>
     <v-card class="elevation-0 d-flex flex-column space-evenly font-weight-medium justify-center" width="40vh" >
-      <v-card-subtitle class="pb-0">Nombres</v-card-subtitle>
+      <v-card-subtitle class="pb-0"><b>Nombres: </b></v-card-subtitle>
       <v-card-text class="text--primary">
-      <div>{{firstName}}+{{lastName}}</div>
+      <div>{{firstName}} {{lastName}}</div>
       </v-card-text>
-      <v-card-subtitle class="pb-0">id</v-card-subtitle>
-      <v-card-text class="text--primary">
-      <div>{{nutritionistId}}</div>
-      </v-card-text>
-      <v-card-subtitle class="pb-0">E-mail</v-card-subtitle>
+      <v-card-subtitle class="pb-0"><b>Email: </b></v-card-subtitle>
       <v-card-text class="text--primary">
       <div>{{email}}</div>
       </v-card-text>
-      <v-card-subtitle class="pb-0">Número Cnp</v-card-subtitle>
+      <v-card-subtitle class="pb-0"><b>CNP: </b></v-card-subtitle>
       <v-card-text class="text--primary">
       <div>{{cnpNumber}}</div>
       </v-card-text>
-       <v-btn @click="editNutritionist(nutritionist)">
+       <!--<v-btn @click="editNutritionist(nutritionist)">
             Actualizar 
           </v-btn>
         <v-btn @click="deleteNutricionist()">
@@ -62,9 +57,9 @@
           </v-btn>
         <v-btn @click="addSpecialty(specialty)">
            Añadir especialidad 
-          </v-btn>
-          <v-btn to="/home-n">
-            Atras
+          </v-btn>-->
+          <v-btn color = "green" @click="goBack()">
+            Atrás
           </v-btn>
     </v-card>
   </v-card>
@@ -415,6 +410,11 @@ export default{
               
             this.close()
       
+    },
+    
+    goBack(){
+      let me = this;
+      me.$router.push({name: 'HomeN', params: {id: this.nutritionistId}});
     }
   }
 }

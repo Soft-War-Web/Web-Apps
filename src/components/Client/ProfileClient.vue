@@ -68,8 +68,11 @@
         </v-dialog>
         <v-spacer></v-spacer>
         
-      </v-card-actions>
       <v-btn color="green" @click="deleteClient()"> Eliminar cuenta </v-btn>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+      <v-btn color="green" @click="goBack()"> Atrás </v-btn>
+      </v-card-actions>
     </v-card>
   </v-card>
   </div>
@@ -156,6 +159,10 @@ export default{
       }).catch(function(error){
         console.log(error);
       });
+    },
+    goBack(){
+      let me = this;
+      me.$router.push({name: 'HomeC', params: {id: this.clientId}});
     }
   }
 }

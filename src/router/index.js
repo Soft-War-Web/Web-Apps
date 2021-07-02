@@ -56,7 +56,7 @@ const routes = [
     component: () => import('../components/Recipe/ListRecipesNutritionist.vue')
   },
   {
-    path: '/recommendations/:id',
+    path: '/recommendations/:id/:userType',
     name: 'recommendations',
     component: () => import('../components/Recommendation/ListRecommendations.vue')
   },

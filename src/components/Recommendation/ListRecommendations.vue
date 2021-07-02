@@ -1,8 +1,10 @@
 <template>
 <div style=";width: 100% ">
     <template >
-      <v-toolbar flat color="white">
+      <v-toolbar>
         <v-toolbar-title>Recomendaciones</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn color="green" @click="goBack()">Atrás</v-btn>
       </v-toolbar>
     </template >
     <div class="d-flex flex-wrap  justify-space-between">
@@ -34,6 +36,8 @@
         nutritionistId: 0,
         search: "",
         editedIndex: -1,
+        idRoute: '',
+        userType: '',
         loading: false,
     }),
 
@@ -48,7 +52,8 @@
           },
         },
         created () {
-            this.nutritionistId=this.$route.params.id;
+            this.idRoute=this.$route.params.id;
+            this.userType=this.$route.params.userType;
             this.list();
         },
     methods: {
@@ -117,6 +122,16 @@
                   console.log(error);
                 });
             },
+      
+            goBack(){
+              let me = this;
+              if(me.userType == "client"){
+                me.$router.push({name: 'HomeC', params: {id: this.idRoute}});
+              }
+              if(me.userType == "nutri"){
+                me.$router.push({name: 'HomeN', params: {id: this.idRoute}});
+              }
+            }
     },
   }
 </script>

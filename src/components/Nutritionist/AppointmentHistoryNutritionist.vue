@@ -2,8 +2,10 @@
 <div style=";width: 100% ">
     <template >
       <v-toolbar flat color="white">
-        <v-toolbar-title>Appointment History</v-toolbar-title>
+        <v-toolbar-title>Historial de asesorías</v-toolbar-title>
         <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-btn color="green" @click="goBack()">Atrás</v-btn>
       </v-toolbar>
     </template >
     <div class="d-flex flex-wrap  justify-space-between">
@@ -132,7 +134,11 @@
                 this.lastModification = "";
                 this.editedIndex = -1;
                 this.nutritionistId= "";
-            }
+            },
+      goBack(){
+        let me = this;
+        me.$router.push({name: 'HomeN', params: {id: this.nutritionistId}});
+      }
 
     },
   }

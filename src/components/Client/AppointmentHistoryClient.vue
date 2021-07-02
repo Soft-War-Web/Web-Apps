@@ -1,9 +1,10 @@
 <template>
 <div style=";width: 100% ">
     <template >
-      <v-toolbar flat color="white">
-        <v-toolbar-title>Appointment History</v-toolbar-title>
+      <v-toolbar>
+        <v-toolbar-title>Historial de asesorías</v-toolbar-title>
         <v-spacer></v-spacer>
+        <v-btn color="green" @click="goBack()">Atrás</v-btn>
       </v-toolbar>
     </template >
     <div class="d-flex flex-wrap  justify-space-between">
@@ -18,9 +19,6 @@
             </v-card-text>
             <v-card-text class="text--primary">
             <div><b>Dieta:</b> {{getDietById(appointment.dietId)}}</div>
-            </v-card-text>
-            <v-card-text class="text--primary">
-            <div><b>Anotaciones:</b> {{appointment.nutritionistNotes}}</div>
             </v-card-text>
         </v-card>
     </div>
@@ -125,6 +123,10 @@
                 this.lastModification = "";
                 this.editedIndex = -1;
                 this.nutritionistId= "";
+            },
+            goBack(){
+              let me = this;
+              me.$router.push({name: 'HomeC', params: {id: this.clientId}});
             }
 
     },

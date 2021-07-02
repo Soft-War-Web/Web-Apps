@@ -4,10 +4,11 @@
       <v-toolbar flat color="white">
         <v-toolbar-title>Recetas</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
+        <v-spacer></v-spacer><v-spacer></v-spacer>
+        <v-btn color="green" @click="goBack()">Atrás</v-btn>
         <v-dialog v-model="dialog" max-width="900px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">Recetas Favoritas</v-btn>
+            <v-btn color="green" v-on="on">Recetas Favoritas</v-btn>
           </template>
           <div class="d-flex flex-wrap  justify-space-between">
                 <v-card class="mx-auto mb-10" max-width="400" v-for="(recipe,i) in favoriteRecipes" :key="i" >
@@ -187,6 +188,10 @@
                   console.log(error);
                 });
             },
+            goBack(){
+              let me = this;
+              me.$router.push({name: 'HomeC', params: {id: this.clientId}});
+            }
     },
   }
 </script>
