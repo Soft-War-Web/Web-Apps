@@ -65,7 +65,6 @@
                         </v-col>
                         
                     </v-row>
-                    <v-text-field v-model="clientId" label="clientId" placeholder="clientId" outlined></v-text-field>
                 </v-container> 
               </v-form>
               <v-card-actions class=" d-flex flex-column align-center">
@@ -111,7 +110,7 @@ import axios from 'axios'
 export default{
   data: () => ({
     dialog: false,
-    items: ['Crédito', 'Dévito'],
+    items: ['Crédito', 'Débito'],
     search: null,
     id: '',
     clients: [],
@@ -133,7 +132,7 @@ export default{
   }),
     clean(){
       this.id= "";
-      this.clientId= "";
+      //this.clientId= "";
       this.cardType= "";
       this.expirationDateMonth= "";
       this.expirationDateYear= "";
@@ -154,6 +153,7 @@ export default{
       },
     },
     created () {
+      this.clientId=this.$route.params.id;
       this.list();
     },
   methods: {
@@ -162,8 +162,8 @@ export default{
     },
     list(){
         let me = this;
-        axios.get('api/PaymentMethods/GetPaymentMethodByClient/'+1, {
-            'clientId': 1
+        axios.get('api/PaymentMethods/GetPaymentMethodByClient/'+this.clientId, {
+            'clientId': this.clientId
           }).then(function(response){
             me.paymentMethods = response.data;
             console.log(response.data);
