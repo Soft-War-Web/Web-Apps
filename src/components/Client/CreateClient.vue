@@ -4,7 +4,7 @@
       <div class="d-flex flex-column align-center">
         <v-card-title class="mb-12 text-h6 text-md-h4 font-weight-medium">Register Usuario</v-card-title>
         <v-img
-            src="https://assets.turbologo.com/blog/es/2019/11/19132900/gaming-logo-cover-958x575.jpg"
+            src="https://bootdey.com/img/Content/avatar/avatar7.png"
             alt=""
             max-width="112px"
             max-height="112px"

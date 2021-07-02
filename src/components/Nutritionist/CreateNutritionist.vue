@@ -58,7 +58,7 @@
     </template >
     <div class="d-flex flex-wrap  justify-space-between">
     <v-card class="mx-auto mb-10" max-width="400" v-for="(nutritionist,i) in nutritionists" :key="i" >
-    <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+    <v-img class="white--text align-end" height="200px" src="https://bootdey.com/img/Content/avatar/avatar7.png">
       <v-card-title>{{nutritionist.username}}</v-card-title>
     </v-img>
 

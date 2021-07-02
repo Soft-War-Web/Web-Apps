@@ -6,7 +6,7 @@
   <br>
   <div class="d-flex flex-wrap  left-space-between">
     <v-card max-width="400">
-    <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+    <v-img class="white--text align-end" height="200px" src="https://nutrygente.com/wp-content/uploads/mejor-nutricionista-online.jpg">
       <v-card-title>{{username}}</v-card-title>
     </v-img>
     <v-card-subtitle class="pb-0">Nombre</v-card-subtitle>

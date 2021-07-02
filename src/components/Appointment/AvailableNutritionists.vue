@@ -6,7 +6,7 @@
     <br>
     <div class="d-flex flex-wrap  justify-space-between">
     <v-card class="mx-auto mb-10" max-width="400" v-for="(nutritionist,i) in nutritionists" :key="i" >
-    <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+    <v-img class="white--text align-end" height="200px" src="https://www.crmsoftwareapp.com/blog/blog-image/lumin-header.png">
       <v-card-title>{{nutritionist.username}}</v-card-title>
     </v-img>
 

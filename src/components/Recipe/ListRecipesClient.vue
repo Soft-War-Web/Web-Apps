@@ -11,7 +11,7 @@
           </template>
           <div class="d-flex flex-wrap  justify-space-between">
                 <v-card class="mx-auto mb-10" max-width="400" v-for="(recipe,i) in favoriteRecipes" :key="i" >
-                    <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+                    <v-img class="white--text align-end" height="200px" src="https://www.welloneapp.com/wp-content/uploads/2019/05/29-4-768x512.jpg">
                         <v-card-title>{{recipe.name}}</v-card-title>
                     </v-img>
                     <v-card-subtitle class="pb-0">Description</v-card-subtitle>
