@@ -1,55 +1,88 @@
 <template>
-  <v-app>
-    <v-app-bar
+  <v-app id="inspire">
+    <v-navigation-drawer 
+     v-model="drawer" 
+     :clipped="$vuetify.breakpoint.lgAndUp"
+     app  
+    >
+    <v-list dense>
+      <template>
+        <v-list-item>
+          <v-list-item-action>
+            <v-icon>home</v-icon>
+          </v-list-item-action>
+          <v-list-item-title>
+            Inicio
+          </v-list-item-title>
+        </v-list-item>
+      </template>
+      <template>
+        <v-list-group>
+          <v-list-item slot="activator">
+            <v-list-item-content>
+              <v-list-item-title>
+                Login
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item :to="{name:'clients'}">
+            <v-list-item-action>
+              <v-icon>table_chart</v-icon>
+            </v-list-item-action> 
+            <v-list-item-content>
+              <v-list-item-title>
+                Login
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+        </v-list-group>
+      </template>
+    </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar 
+      :clipped-left="$vuetify.breakpoint.lgAndUp" 
       app
-      color="primary"
+      color="blue darken-3" 
       dark
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>open_in_new</v-icon>
+      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+        <span class="hidden-sm-and-down">Nutricare</span>
+      </v-toolbar-title>
+      <v-spacer />
+      <v-btn icon>
+        <v-icon>view_list</v-icon>
       </v-btn>
     </v-app-bar>
-
     <v-main>
-      <router-view/>
+      <v-container 
+        class="fill-height" 
+        fluid
+      >
+        <v-slide-x-transition mode="out-in">
+          <router-view></router-view>
+          <Login></Login>
+        </v-slide-x-transition>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
 
+import Login from "./views/Login.vue";
+
 export default {
   name: 'App',
+  
+  components:{
+    Login,
+  },
 
   data: () => ({
-    //
+    drawer:null
   }),
 };
 </script>
