@@ -2,7 +2,7 @@
   <div class="align-center d-flex flex-column mx-auto">
     <v-card  class="d-flex flex-column  align-center space-evenly elevation-10 mt-10 mt-sm-0 mx-auto my-auto">
       <div class="d-flex flex-column align-center">
-        <v-card-title class="mb-12 text-h6 text-md-h4 font-weight-medium">Register Usuario</v-card-title>
+        <v-card-title class="mb-12 text-h6 text-md-h4 font-weight-medium">Registro Cliente</v-card-title>
         <v-img
             src="https://bootdey.com/img/Content/avatar/avatar7.png"
             alt=""
@@ -22,8 +22,8 @@
       </v-form>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="clean">Cancel</v-btn><!--Antes <v-btn>-->
-        <v-btn color="blue darken-1" text @click="save">Save</v-btn><!--Antes <v-btn>-->
+        <v-btn color="blue darken-1" text @click="save()">Registrarse</v-btn>
+        <v-btn color="blue darken-1" text @click="close()">Cancelar</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -51,7 +51,7 @@ export default{
   
   methods: {
     close() {
-      this.dialog = false
+      this.$router.push('/');
     },
     clean(){
       this.id = "";
@@ -77,7 +77,7 @@ export default{
       }).catch(function(error){
           console.log(error);
       });
-      this.$router.push('/register');
+      this.$router.push('/');
     }
   }
 }

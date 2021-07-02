@@ -31,13 +31,13 @@ const routes = [
     component: () => import('../views/Login.vue')
   },
   {
-    path: '/clients',
-    name: 'clients',
+    path: '/registerClient',
+    name: 'registerClient',
     component: () => import('../components/Client/CreateClient.vue')
   },
   {
-    path: '/nutritionists',
-    name: 'nutritionists',
+    path: '/registerNutritionist',
+    name: 'registerNutritionist',
     component: () => import('../components/Nutritionist/CreateNutritionist.vue')
   },
   {

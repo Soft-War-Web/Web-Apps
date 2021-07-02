@@ -36,8 +36,17 @@
               ></v-text-field>
             </validation-provider>
             <div class="text-center">
-              <v-btn class="signin-btn" type="submit" rounded color="white" dark>
-                Sign In
+              <v-btn class="green" type="submit" rounded color="white" dark>
+                Ingresar
+              </v-btn>
+              <v-spacer></v-spacer>
+              <v-spacer></v-spacer>
+              <v-btn class="green" rounded color="white" dark @click="goRegisterClient()">
+                Registro Cliente
+              </v-btn>
+              <v-spacer></v-spacer>
+              <v-btn class="green" rounded color="white" dark @click="goRegisterNutritionist()">
+                Registro Nutricionista
               </v-btn>
             </div>
           </v-form>
@@ -119,6 +128,14 @@ export default {
       this.email = ''
       this.password = null
       this.$refs.observer.reset()
+    },
+    goRegisterClient(){
+      let me = this;
+      me.$router.push({name: 'registerClient'});
+    },
+    goRegisterNutritionist(){
+      let me = this;
+      me.$router.push({name: 'registerNutritionist'});
     }
   }
 }
