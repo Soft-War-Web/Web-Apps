@@ -11,7 +11,7 @@
     <div class="d-flex flex-column align-center">
       <v-card-title class="mb-12 text-h6 text-md-h4 font-weight-medium">Perfil</v-card-title>
       <v-img
-          src="https://assets.turbologo.com/blog/es/2019/11/19132900/gaming-logo-cover-958x575.jpg"
+          src="https://bootdey.com/img/Content/avatar/avatar7.png"
           alt=""
           max-width="400px"
           max-height="400px"
@@ -33,10 +33,11 @@
       <div><h2><b>Email:</b> {{email}}</h2></div>
       </v-card-text>
       <v-card-actions>
-        <v-dialog v-model="dialog" max-width="500px">
-          <template v-slot:activator="{ on }">
+         <template v-slot:activator="{ on }">
             <v-btn color="green" v-on="on">Modificar información</v-btn>
           </template>
+        <v-dialog v-model="dialog" max-width="500px">
+         
           <v-card>
             <v-card-title>
               <span class="headline">Modificar información</span>
@@ -66,8 +67,9 @@
           </v-card>
         </v-dialog>
         <v-spacer></v-spacer>
-        <v-btn color="green" @click="deleteClient()"> Eliminar cuenta </v-btn>
+        
       </v-card-actions>
+      <v-btn color="green" @click="deleteClient()"> Eliminar cuenta </v-btn>
     </v-card>
   </v-card>
   </div>
