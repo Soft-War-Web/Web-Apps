@@ -81,6 +81,7 @@
           },
         },
         created () {
+            this.nutritionistId=this.$route.params.id;
             this.list();
         },
     methods: {
@@ -90,17 +91,10 @@
       },
       list(){
                 let me = this;
-                axios.get('api/Recommendations')
-                .then(function(response){
-                  me.recommendations = response.data;
-                  console.log(response.data);
-                }).catch(function(error){
-                  console.log(error);
-                });
-                axios.get('api/Clients/GetRecipesFromClient/'+1,{
-                    'ClientId': 1
+                axios.get('api/Recommendations/GetRecommendationsFromNutritionist/'+this.nutritionistId,{
+                  'NutritionistId': this.nutritionistId,
                 }).then(function(response){
-                  me.favoriteRecipes = response.data;
+                  me.recommendations = response.data;
                   console.log(response.data);
                 }).catch(function(error){
                   console.log(error);
@@ -140,7 +134,7 @@
             save(){
                 let me = this;
                 axios.post('api/Recommendations',{ // Publicar recomendación
-                        'nutritionistId': 1,
+                        'nutritionistId': this.nutritionistId,
                         'name': me.name,
                         'description': me.description,
                         'createdAt': me.createdAt,

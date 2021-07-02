@@ -84,7 +84,6 @@
         createdAt: new Date(),
         favorites: 0,
         recipes: [],
-        nutritionists: [],
         nutritionistId: 0,
         search: "",
         editedIndex: -1,
@@ -102,6 +101,7 @@
           },
         },
         created () {
+            this.nutritionistId=this.$route.params.id;
             this.list();
         },
     methods: {
@@ -111,17 +111,10 @@
       },
       list(){
                 let me = this;
-                axios.get('api/Recipes')
-                .then(function(response){
-                  me.recipes = response.data;
-                  console.log(response.data);
-                }).catch(function(error){
-                  console.log(error);
-                });
-                axios.get('api/Clients/GetRecipesFromClient/'+1,{
-                    'ClientId': 1
+                axios.get('api/Recipes/GetRecipesFromNutritionist/'+this.nutritionistId,{
+                  'NutritionistId': this.nutritionistId,
                 }).then(function(response){
-                  me.favoriteRecipes = response.data;
+                  me.recipes = response.data;
                   console.log(response.data);
                 }).catch(function(error){
                   console.log(error);
@@ -162,12 +155,12 @@
                 this.favorites = "";
                 this.lastModification = new Date();
                 this.editedIndex = -1;
-                this.nutritionistId= "";
+                //this.nutritionistId= "";
             },
             save(){
                 let me = this;
                 axios.post('api/Recipes',{ // Publicar receta
-                          'nutritionistId': 1,
+                          'nutritionistId': this.nutritionistId,
                           'name': me.name,
                           'description': me.description,
                           'favorites': 0,

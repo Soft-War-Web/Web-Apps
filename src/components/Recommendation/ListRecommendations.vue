@@ -48,6 +48,7 @@
           },
         },
         created () {
+            this.nutritionistId=this.$route.params.id;
             this.list();
         },
     methods: {
@@ -60,14 +61,6 @@
                 axios.get('api/Recommendations')
                 .then(function(response){
                   me.recommendations = response.data;
-                  console.log(response.data);
-                }).catch(function(error){
-                  console.log(error);
-                });
-                axios.get('api/Clients/GetRecipesFromClient/'+1,{
-                    'ClientId': 1
-                }).then(function(response){
-                  me.favoriteRecipes = response.data;
                   console.log(response.data);
                 }).catch(function(error){
                   console.log(error);

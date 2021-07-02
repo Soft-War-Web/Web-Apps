@@ -88,7 +88,12 @@ const routes = [
   {
     path: '/appointmentsHistoryNutritionist/:id',
     name: 'appointmentsHistoryNutritionist',
-    component: () => import('../components/Client/AppointmentHistoryClient.vue')
+    component: () => import('../components/Nutritionist/AppointmentHistoryNutritionist.vue')
+  },
+  {
+    path: '/pendingAppointments/:id',
+    name: 'pendingAppointments',
+    component: () => import('../components/Nutritionist/PendingAppointments.vue')
   },
 
 
@@ -116,12 +121,12 @@ const routes = [
   },
 
   {
-    path: '/published-recommendations',
+    path: '/published-recommendations/:id',
     name: 'PublishedRecommendations',
     component: () => import('../components/Nutritionist/PublishedRecommendations.vue')
   },
   {
-    path: '/published-recipes',
+    path: '/published-recipes/:id',
     name: 'PublishedRecipes',
     component: () => import('../components/Nutritionist/PublishedRecipes.vue')
   },

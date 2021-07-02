@@ -31,7 +31,7 @@
                     <div>{{recipe.favorites}}</div>
                     </v-card-text>
                     <v-card-actions>
-                    <v-btn color="orange" text @click="deleteFavoriteRecipe(recipe)"> Quitar de favoritos </v-btn>
+                    <v-btn color="green" text @click="deleteFavoriteRecipe(recipe)"> Quitar de favoritos </v-btn>
                     </v-card-actions>
                 </v-card>
             </div>

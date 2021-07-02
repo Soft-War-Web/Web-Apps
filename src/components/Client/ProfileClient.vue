@@ -1,36 +1,73 @@
 <template>
   <div>
+   <!-- 
+  <template>
+  <v-toolbar flat color="white">
+        <v-toolbar-title>Perfil</v-toolbar-title>
+  </v-toolbar>
+  </template>
+  -->
   <v-card class="d-flex d-flex flex-column flex-sm-row">
     <div class="d-flex flex-column align-center">
-      <v-card-title class="mb-12 text-h6 text-md-h4 font-weight-medium">Client Profile</v-card-title>
+      <v-card-title class="mb-12 text-h6 text-md-h4 font-weight-medium">Perfil</v-card-title>
       <v-img
           src="https://assets.turbologo.com/blog/es/2019/11/19132900/gaming-logo-cover-958x575.jpg"
           alt=""
           max-width="400px"
           max-height="400px"
       ></v-img>
+      <br>
+      <div><h2><b>{{username}}</b> </h2></div>
     </div>
     
     <v-card class="elevation-0" width="10vh" height="40vh">
 
     </v-card>
     <v-card class="elevation-0 d-flex flex-column space-evenly font-weight-medium justify-center" width="40vh" >
-      <v-card-subtitle class="pb-1 " >Username</v-card-subtitle>
       <v-card-text class="text--primary">
-      <div>{{username}}</div>
-      </v-card-text>  
-      <v-card-subtitle class="pb-0">First Name</v-card-subtitle>
-      <v-card-text class="text--primary">
-      <div>{{firstName}}</div>
       </v-card-text>
-      <v-card-subtitle class="pb-0">Last Name</v-card-subtitle>
       <v-card-text class="text--primary">
-      <div>{{lastName}}</div>
+      <div><h2><b>Nombre:</b> {{firstName}} {{lastName}}</h2></div>
       </v-card-text>
-      <v-card-subtitle class="pb-0">E-mail</v-card-subtitle>
       <v-card-text class="text--primary">
-      <div>{{email}}</div>
+      <div><h2><b>Email:</b> {{email}}</h2></div>
       </v-card-text>
+      <v-card-actions>
+        <v-dialog v-model="dialog" max-width="500px">
+          <template v-slot:activator="{ on }">
+            <v-btn color="green" v-on="on">Modificar información</v-btn>
+          </template>
+          <v-card>
+            <v-card-title>
+              <span class="headline">Modificar información</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" sm="12" md="12">
+                    <v-text-field v-model="username" label="Username"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="12" md="12">
+                    <v-text-field v-model="firstName" label="Nombres"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="12" md="12">
+                    <v-text-field v-model="lastName" label="Apellidos"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="12" md="12">
+                    <v-text-field v-model="email" label="Email"></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn color="green" @click="editClient()">Modificar</v-btn>
+              <v-btn color="green" @click="close()">Cancelar</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <v-spacer></v-spacer>
+        <v-btn color="green" @click="deleteClient()"> Eliminar cuenta </v-btn>
+      </v-card-actions>
     </v-card>
   </v-card>
   </div>
@@ -40,6 +77,7 @@
   import axios from 'axios'
 export default{
   data: () => ({
+    dialog: false,
     id: '',
     username: '',
     password: '',
@@ -47,7 +85,7 @@ export default{
     lastName: '',
     email: '',
     createdAt: new Date(),
-    clients: '',
+    client: null,
     clientId: 0,
     showPassword: false,
     rules: {
@@ -66,6 +104,7 @@ export default{
       axios.get('api/Clients/GetClientById/'+this.clientId)
       .then(function(response){
         me.username = response.data.username;
+        me.password = response.data.password;
         me.firstName = response.data.firstName;
         me.lastName = response.data.lastName;
         me.email = response.data.email;
@@ -75,7 +114,7 @@ export default{
     });
     },
     close() {
-      this.dialog = false
+      this.dialog = false;
     },
     clean(){
       this.id = "";
@@ -85,23 +124,36 @@ export default{
       this.lastName = "";
       this.email = "";
       this.createdAt = "";
-    },
-    save(){
+    }, 
+    deleteClient(){
       let me = this;
-      axios.post('api/Clients',{
-        'username': me.username,
-        'password': me.password,
-        'firstName': me.firstName,
-        'lastName': me.lastName,
-        'email': me.email,
-        'createdAt': me.createdAt
-      }).then(function(response){
+      if(confirm('¿Estás seguro de que quieres eliminar tu cuenta?'))
+        axios.delete('api/Clients/'+this.clientId,{
+          'id': this.clientId
+        }).then(function(response){
+          console.log(me.clientId);
           me.close();
-          me.clean();
-      }).catch(function(error){
+          me.listByClientId();
+        }).catch(function(error){
           console.log(error);
+        });
+    },
+    editClient(){
+      let me = this;
+      if(confirm('¿Estás seguro de que quieres modificar tu información?'))
+      axios.put('api/Clients/PutClient',{
+        "clientId": this.clientId,
+        "username": me.username,
+        "password": me.password,
+        "firstName": me.firstName,
+        "lastName": me.lastName,
+        "email": me.email
+      }).then(function(response){
+        me.close();
+        me.listByClientId();
+      }).catch(function(error){
+        console.log(error);
       });
-      this.$router.push('/register');
     }
   }
 }

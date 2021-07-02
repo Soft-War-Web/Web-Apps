@@ -10,37 +10,37 @@
       </v-col>
       <v-col>
         <v-col>
-          <v-btn>
+          <v-btn @click="goProfile()">
             perfil
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn @click="goPendingAppointments()">
             asesorías pendientes
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn @click="goAppointmentHistory()">
             historial de asesorías
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn @click="goRecipes()">
             recetas
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn @click="goRecommendations()">
             recomendaciones
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn @click="goPublishedRecipes()">
             recetas publicadas
           </v-btn>
           <br>
           <br>
-          <v-btn>
+          <v-btn @click="goPublishedRecommendations()">
             recomendaciones publicadas
           </v-btn>
         </v-col>
@@ -67,29 +67,29 @@
         let me = this;
         me.$router.push({name: 'nutritionistProfile', params: {id: me.idRoute}});
       },
-      goAppointment(){
+      goPendingAppointments(){
         let me = this;
-        me.$router.push({name: 'availableNutritionists', params: {id: me.idRoute}});
+        me.$router.push({name: 'pendingAppointments', params: {id: me.idRoute}});
       },
       goAppointmentHistory(){
         let me = this;
-        me.$router.push({name: 'appointmentsHistoryClient', params: {id: me.idRoute}});
+        me.$router.push({name: 'appointmentsHistoryNutritionist', params: {id: me.idRoute}});
       },
       goRecipes(){
         let me = this;
-        me.$router.push({name: 'recipesClient', params: {id: me.idRoute}});
+        me.$router.push({name: 'recipesNutritionist', params: {id: me.idRoute}});
       },
       goRecommendations(){
         let me = this;
         me.$router.push({name: 'recommendations', params: {id: me.idRoute}});
       },
-      goPaymentMethods(){
+      goPublishedRecipes(){
         let me = this;
-        me.$router.push({name: 'ListPaymentMethods', params: {id: me.idRoute}});
+        me.$router.push({name: 'PublishedRecipes', params: {id: me.idRoute}});
       },
-      goBills(){
+      goPublishedRecommendations(){
         let me = this;
-        me.$router.push({name: 'ListBill', params: {id: me.idRoute}});
+        me.$router.push({name: 'PublishedRecommendations', params: {id: me.idRoute}});
       }
     }
   }

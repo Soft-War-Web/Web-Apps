@@ -65,6 +65,7 @@
           },
         },
         created () {
+            this.nutritionistId=this.$route.params.id;
             this.list();
         },
     methods: {
@@ -77,14 +78,6 @@
                 axios.get('api/Recipes')
                 .then(function(response){
                   me.recipes = response.data;
-                  console.log(response.data);
-                }).catch(function(error){
-                  console.log(error);
-                });
-                axios.get('api/Clients/GetRecipesFromClient/'+1,{
-                    'ClientId': 1
-                }).then(function(response){
-                  me.favoriteRecipes = response.data;
                   console.log(response.data);
                 }).catch(function(error){
                   console.log(error);
@@ -103,30 +96,21 @@
         this.editedIndex = 1;
         this.dialog = true;
       },
-            getNutritionistById(){
-                axios.get('api/Nutritionists/GetNutritionistById/'+this.nutritionistId)
-                .then(function(response){
-                  this.nutritionistId=response.data.nutritionistId;
-                }).catch(function(error){
-                  console.log(error);
-                });
-            },
-
-            close() {
-                this.dialog = false
-            },
-            clean(){
-                this.id = "";
-                this.name = "";
-                this.description = "";
-                this.preparation = "";
-                this.ingredients = "";
-                this.createdAt = "";
-                this.favorites = "";
-                this.lastModification = "";
-                this.editedIndex = -1;
-                this.nutritionistId= "";
-            }
+      close() {
+          this.dialog = false
+      },
+      clean(){
+        this.id = "";
+        this.name = "";
+        this.description = "";
+        this.preparation = "";
+        this.ingredients = "";
+        this.createdAt = "";
+        this.favorites = "";
+        this.lastModification = "";
+        this.editedIndex = -1;
+        this.nutritionistId= "";
+        }
     },
   }
 </script>
