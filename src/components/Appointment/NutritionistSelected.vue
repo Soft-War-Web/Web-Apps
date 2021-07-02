@@ -55,13 +55,31 @@ import axios from 'axios'
       ruc: 12345,
       billDate: new Date(),
       appointmentId: '',
-      dietId: ''
+      dietId: '',
+      lastAppointment: '',
+      lastDiet: '',
+
     }),
     created()
     {
+      let me = this;
       this.clientId=this.$route.params.id;
       this.nutritionistId=this.$route.params.nutritionistId;
       this.getNutritionist();
+      try{
+      axios.get('api/Appointments/GetLastAppointment')
+        .then(function(response){
+        me.lastAppointment = response.data.appointmentId;
+      
+      });
+      axios.get('api/Diets/GetLastDiet')
+      .then(function(response){
+        me.lastDiet = response.data.dietId;
+      });
+      }catch(error){
+        console.log(error);
+      }
+
     },
     methods: {
       reserve () 
@@ -104,34 +122,22 @@ import axios from 'axios'
             'ruc': me.ruc,
             'billDate': me.billDate,
             })
+            axios.post('api/Diets',{
+              'dietName': 'a',
+              'dietDescription': 'a',
+              'createdAt': me.appointmentDate
+            })
         }
         try
         {
-          axios.post('api/Diets',{
-            'dietName': 'a',
-            'dietDescription': 'a',
-            'createdAt': me.appointmentDate
-          })
+          me.lastAppointment = Number(me.lastAppointment) +1;
+          me.lastDiet = Number(me.lastDiet) + 1;
         }
         finally
         {
-          axios.get('api/Appointments/GetLastAppointment')
-          .then(function(response){
-            me.appointmentId = response.data.appointmentId;
-          })
-        }
-        try
-        {
-          axios.get('api/Diets/GetLastDiet')
-          .then(function(response){
-            me.dietId = response.data.dietId;
-          })
-        }
-        finally
-        {
-          axios.put('api/Appointments/AssingDiet/'+me.appointmentId+'/'+me.dietId,{
-            'AppointmentId': me.appointmentId,
-            'DietId': me.dietId
+          axios.put('api/Appointments/AssingDiet/'+this.lastAppointment+'/'+this.lastDiet,{
+            'AppointmentId': this.lastAppointment},{
+            'DietId': this.lastDiet
           })
           this.$router.push({name: 'HomeC', params: {id: this.clientId}});
         }

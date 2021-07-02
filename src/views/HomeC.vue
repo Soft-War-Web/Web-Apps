@@ -50,7 +50,7 @@
 </template>
 
 <script>
-
+import axios from 'axios'
   export default {
     name: 'HomeC',
     mounted(){
@@ -60,8 +60,16 @@
     components: {
     },
     data: () => ({
-      idRoute: null
+      idRoute: null,
+      lastAppointment: '',
+      lastDiet: '',
     }),
+    created(){
+      axios.put('api/Appointments/AssingDiet/'+1+'/'+1,{
+          'AppointmentId': 1},{
+          'DietId': 1
+        })
+    },
     methods:{
       goProfile(){
         let me = this;
@@ -90,6 +98,13 @@
       goBills(){
         let me = this;
         me.$router.push({name: 'ListBill', params: {id: me.idRoute}});
+      },
+      assignLast(){
+        
+        axios.put('api/Appointments/AssingDiet/'+this.lastAppointment+'/'+this.lastDiet,{
+          'AppointmentId': this.lastAppointment},{
+          'DietId': this.lastDiet
+        })
       }
     }
   }
